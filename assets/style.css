@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #983434;
+}
+
+.main {
+    background: #fff;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
+}
