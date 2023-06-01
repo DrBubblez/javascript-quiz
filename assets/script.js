@@ -53,6 +53,10 @@ function showQuestion() {
         button.innerHTML = answer.text;
         button.setAttribute("id", "btn")
         answerBtns.appendChild(button);
+        if(answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
     });
 }
 
@@ -60,6 +64,16 @@ function resetState() {
     nextBtn.style.display = "none";
     while(answerBtns.firstChild){
         answerBtns.removeChild(answerBtns.firstChild);
+    }
+}
+
+function selectAnswer(e) {
+    const selectedAns = e.target;
+    const isCorrect = selectedAns.dataset.correct === "true";
+    if(isCorrect) {
+        selectedAns.classList.add("correct");
+    } else {
+        selectedAns.classList.add("incorrect");
     }
 }
 
