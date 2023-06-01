@@ -72,8 +72,10 @@ function selectAnswer(e) {
     const isCorrect = selectedAns.dataset.correct === "true";
     if(isCorrect) {
         selectedAns.classList.add("correct");
+        score++;
     } else {
         selectedAns.classList.add("incorrect");
+        // subtracts time from the timer
     }
     Array.from(answerBtns.children).forEach(button => {
         if(button.dataset.correct === "true") {
@@ -83,5 +85,29 @@ function selectAnswer(e) {
     })
     nextBtn.style.display = "block";
 }
+
+function showScore() {
+    resetState();
+    questionEl.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextBtn.innerHTML = "Play Again?";
+    nextBtn.style.display = "block";
+}
+
+function handleNextBtn() {
+    questionIndex++;
+    if(questionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showScore();
+    }
+}
+
+nextBtn.addEventListener("click", ()=> {
+if(questionIndex < questions.length) {
+    handleNextBtn();
+} else {
+    startQuiz();
+}
+});
 
 startQuiz();
