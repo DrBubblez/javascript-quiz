@@ -68,3 +68,11 @@ body {
     cursor: pointer;
     display: none;
 }
+
+.correct {
+    background: #03fc7b !important;
+}
+
+.incorrect {
+    background: #c2305a !important;
+}
