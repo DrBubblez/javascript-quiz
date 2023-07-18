@@ -38,12 +38,18 @@ const nextBtn = document.getElementById("next-btn");
 let questionIndex = 0;
 let score = 0;
 
+// Setting timer variables.
+const timeTotal = 70;
+let timeRemaining = timeTotal;
+let timeInt;
+
 // Starts the quiz and sets everything to their defalut value.
 function startQuiz() {
     questionIndex = 0;
     score = 0;
     nextBtn.innerHTML = "Next";
     showQuestion();
+    startTimer();
 }
 
 // Calls for the resetState() and displays the current question and answers.
@@ -74,6 +80,34 @@ function resetState() {
     }
 }
 
+// Starts the timer.
+function startTimer() {
+    updateTimer();
+
+    timeInt = setInterval(function() {
+        timeRemaining--;
+        updateTimer();
+
+        if (timeRemaining <= 0) {
+            clearInterval(timeInt);
+            showScore();
+        }
+    }, 1000);
+}
+
+// Resets the timer.
+function resetTimer() {
+    clearInterval(timeInt);
+    timeRemaining = timeTotal;
+    updateTimer();
+}
+
+// Updates and dynmically displays the timer.
+function updateTimer() {
+    const timerEl = document.getElementById("timer");
+    timerEl.textContent = `Time Remaining: ${timeRemaining} seconds`;
+}
+
 // 
 function selectAnswer(e) {
     // Assigns the event target to a selected answer.
@@ -87,6 +121,7 @@ function selectAnswer(e) {
     } else {
         selectedAns.classList.add("incorrect");
         // subtracts time from the timer
+        timeRemaining -= 5;
     }
     // Preforms a check on all the child elements to see if you answered correctly or not.
     Array.from(answerBtns.children).forEach(function compare(button) {
@@ -101,6 +136,7 @@ function selectAnswer(e) {
 
 // Uses resetState() and displays the score of the user and gives the option to play again.
 function showScore() {
+    clearInterval(timeInt);
     resetState();
     questionEl.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextBtn.innerHTML = "Play Again?";
@@ -121,6 +157,7 @@ nextBtn.addEventListener("click", ()=> {
 if(questionIndex < questions.length) {
     handleNextBtn();
 } else {
+    resetTimer();
     startQuiz();
 }
 });
