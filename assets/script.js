@@ -29,10 +29,15 @@ const questions = [
     },
 ];
 
+// Declare the highScores array.
+let highScores = [];
+
 // Linking variables to html elements.
+const quizEl = document.getElementsByClassName("quiz");
 const questionEl = document.getElementById("question");
 const answerBtns = document.getElementById("answer-btns");
 const nextBtn = document.getElementById("next-btn");
+const saveBtn = document.getElementById("save-btn");
 
 // Setting default values to question number and score.
 let questionIndex = 0;
@@ -45,9 +50,21 @@ let timeInt;
 
 // Starts the quiz and sets everything to their defalut value.
 function startQuiz() {
+    // Loads the high scores from local storage.
+    let storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+    highScores = storedHighScores;
+
+    // Sets the score and question number to their default values.
     questionIndex = 0;
     score = 0;
+
+    // Displays the next button.
     nextBtn.innerHTML = "Next";
+
+    // resets the timer.
+    resetTimer();
+
+    // shows the question and starts the timer.
     showQuestion();
     startTimer();
 }
@@ -75,6 +92,7 @@ function showQuestion() {
 // Resets the state of the question by hiding the next button and removing all child elements of answer buttons.
 function resetState() {
     nextBtn.style.display = "none";
+    saveBtn.style.display = "none";
     while(answerBtns.firstChild) {
         answerBtns.removeChild(answerBtns.firstChild);
     }
@@ -134,14 +152,38 @@ function selectAnswer(e) {
     nextBtn.style.display = "block";
 }
 
-// Uses resetState() and displays the score of the user and gives the option to play again.
+// Uses resetState() and displays the score of the user and allows them to save their score or play again.
 function showScore() {
     clearInterval(timeInt);
     resetState();
-    questionEl.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    nextBtn.innerHTML = "Play Again?";
+    questionEl.innerHTML = "Your Score: " + score + "!";
+    nextBtn.innerHTML = "Play Again";
+    saveBtn.innerHTML = "Save Score";
+    saveBtn.style.display = "block";
     nextBtn.style.display = "block";
 }
+
+
+// Saves the score to local storage and shows the high scores.
+function saveScore() {
+    let initials = prompt("Enter your initials: ");
+    
+    // Initialize the array if it's null
+    if (highScores === null) {
+        highScores = [];
+    }
+    
+    let scoreObj = {
+        initials: initials,
+        score: score
+    };
+    highScores.push(scoreObj);
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+
+saveBtn.addEventListener("click", saveScore);
 
 // Handels the logic of next button for either next question or to show the score.
 function handleNextBtn() {
@@ -152,7 +194,7 @@ function handleNextBtn() {
         showScore();
     }
 }
-
+// Adds an event listener to the next button.
 nextBtn.addEventListener("click", ()=> {
 if(questionIndex < questions.length) {
     handleNextBtn();
@@ -161,5 +203,29 @@ if(questionIndex < questions.length) {
     startQuiz();
 }
 });
+
+// Displays the high scores.
+function viewHighScores() {
+    // Hides the quiz elements.
+    quizEl.style.display = "none";
+    // displays the high scores list
+    const highScoresList = document.getElementById("high-scores");
+    highScoresList.style.display = "block";
+
+    // Clears the high scores list
+    highScoresList.innerHTML = "";
+
+    // Loop through the high scores and display them.
+    if (highScores !== null) {
+        highScores.forEach(function displayScores(score) {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = score.initials + " - " + score.score;
+            highScoresList.appendChild(listItem);
+        });
+    }
+}
+
+// Adds an event listener to the save button.
+saveBtn.addEventListener("click", viewHighScores);
 
 startQuiz();
