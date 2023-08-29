@@ -1,30 +1,93 @@
 // Object Array for each question and answer.
 const questions = [
     {
-        question: "Question 1?",
+        question: "What syntax is used to create a variable?",
         answers: [
-            { text: "Option 1", correct: false},
-            { text: "Option 2", correct: true},
-            { text: "Option 3", correct: false},
-            { text: "Option 4", correct: false},
+            { text: "var", correct: false},
+            { text: "let", correct: false},
+            { text: "const", correct: false},
+            { text: "all the above", correct: true},
         ]
     },
     {
-        question: "Question 2?",
+        question: "What syntax is used to create a function?",
         answers: [
-            { text: "Option 1", correct: false},
-            { text: "Option 2", correct: false},
-            { text: "Option 3", correct: false},
-            { text: "Option 4", correct: true},
+            { text: "const", correct: false},
+            { text: "function", correct: true},
+            { text: "this", correct: false},
+            { text: "$", correct: false},
         ]
     },
     {
-        question: "Question 3?",
+        question: "What syntax is used to create a for loop?",
         answers: [
-            { text: "Option 1", correct: true},
-            { text: "Option 2", correct: false},
-            { text: "Option 3", correct: false},
-            { text: "Option 4", correct: false},
+            { text: "for", correct: true},
+            { text: "while", correct: false},
+            { text: "loop", correct: false},
+            { text: "repeat", correct: false},
+        ]
+    },
+    {
+        question: "What syntax is used to create an if statement?",
+        answers: [
+            {text: "pop", correct: false},
+            {text: "if", correct: true},
+            {text: "else", correct: false},
+            {text: "if else", correct: false},
+        ]
+    },
+    {
+        question: "What syntax is used to create an array?",
+        answers: [
+            {text: "<>", correct: false},
+            {text: "()", correct: false},
+            {text: "{}", correct: false},
+            {text: "[]", correct: true},
+        ]
+    },
+    {
+        question: "What is a boolean?",
+        answers: [
+            {text: "true or false", correct: true},
+            {text: "a number", correct: false},
+            {text: "text", correct: false},
+            {text: "a function", correct: false},
+        ]
+    },
+    {
+        question: "What is a string?",
+        answers: [
+            {text: "true or false", correct: false},
+            {text: "a number", correct: false},
+            {text: "text", correct: true},
+            {text: "a function", correct: false},
+        ]
+    },
+    {
+        question: "What is an array?",
+        answers: [
+            {text: "a string of numbers", correct: false},
+            {text: "a string of text", correct: false},
+            {text: "a list of variables", correct: false},
+            {text: "a list of values", correct: true},
+        ]
+    },
+    {
+        question: "What is local storage?",
+        answers: [
+            {text: "a place to store data", correct: true},
+            {text: "a place to store code", correct: false},
+            {text: "a place to store functions", correct: false},
+            {text: "a place to store variables", correct: false},
+        ]
+    },
+    {
+        question: "What does JSON stand for?",
+        answers: [
+            {text: "JavaScript Object Notation", correct: true},
+            {text: "JavaScript Object Number", correct: false},
+            {text: "JavaScript Object Null", correct: false},
+            {text: "JavaScript Object Name", correct: false},
         ]
     },
 ];
