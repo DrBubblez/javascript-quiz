@@ -33,7 +33,7 @@ const questions = [
 let highScores = [];
 
 // Linking variables to html elements.
-const quizEl = document.getElementsByClassName("quiz");
+const quizEl = document.querySelector(".quiz");
 const questionEl = document.getElementById("question");
 const answerBtns = document.getElementById("answer-btns");
 const nextBtn = document.getElementById("next-btn");
