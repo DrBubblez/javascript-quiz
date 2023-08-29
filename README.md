@@ -11,7 +11,9 @@ This application was created using HTML, CSS, and JavaScript.
 
 ## Installation
 
-Download the repository and open the `index.html` file in your browser.
+1. Link to webpage: 
+OR  
+2. Download the repository and open the `index.html` file in your browser.
 
 ## Usage
 Launch in your browser and take the quiz. After the quiz is finished, you can either save score or try again. 
