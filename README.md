@@ -11,8 +11,8 @@ This application was created using HTML, CSS, and JavaScript.
 
 ## Installation
 
-1. Link to webpage: 
-OR  
+1. Link to webpage: https://drbubblez.github.io/javascript-quiz/
+
 2. Download the repository and open the `index.html` file in your browser.
 
 ## Usage
